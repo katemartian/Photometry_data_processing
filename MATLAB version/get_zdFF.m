@@ -1,5 +1,4 @@
-function zdFF = get_zdFF(reference, signal, ...
-                smooth_win, remove, lambda, itermax, order, wep, p)
+function zdFF = get_zdFF(reference, signal, smooth_win, remove, lambda, itermax, order, wep, p)
             
 % Calculates z-score dF/F signal based on fiber photometry calcium-idependent 
 % and calcium dependent signals.
@@ -26,7 +25,7 @@ function zdFF = get_zdFF(reference, signal, ...
 %    
 %  Examples:
 %     zdFF = get_zdFF(reference, signal);
-%     zdFF = get_zdFF(reference, signal, 10, 200, 10e9, 50, 2, 0.5, 0.5);
+%     zdFF = get_zdFF(reference, signal, 10, 200, 5e9, 50, 2, 0.5, 0.5);
 %
 %  Reference:
 %     (1) Martianova, E., Aronson, S., Proulx, C.D. Multi-Fiber Photometry 
@@ -47,7 +46,7 @@ function zdFF = get_zdFF(reference, signal, ...
                 if nargin<6
                     itermax = 50;                    
                     if nargin<5
-                        lambda=10e9;                        
+                        lambda=5e9;                        
                         if nargin<4
                             remove=200;                            
                             if nargin<3
