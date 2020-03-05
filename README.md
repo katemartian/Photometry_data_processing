@@ -1,6 +1,6 @@
 # Photometry_data_processing
 
-This processing algorithm of photometry recordings was developed by Ekaterina Martianova in Christophe Proulx lab at CERVO Brain research center, Laval university, Quebec, QC, Canada.
+This processing algorithm of fiber photometry recordings was developed by Ekaterina Martianova in Christophe Proulx lab at CERVO Brain research center, Laval university, Quebec, QC, Canada, 2019.
 
 In order to use, please copy the notebook Photometry_data_processing.ipynb and an example file example.csv to your computer or your google drive and follow the instructions in the notebook.
 
