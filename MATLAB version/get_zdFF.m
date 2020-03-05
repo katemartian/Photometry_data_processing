@@ -1,5 +1,41 @@
 function zdFF = get_zdFF(reference, signal, ...
                 smooth_win, remove, lambda, itermax, order, wep, p)
+            
+% Calculates z-score dF/F signal based on fiber photometry calcium-idependent 
+% and calcium dependent signals.
+%
+% This program is a translation in MATLAB of the Python source code of
+% get_zdFF.py
+%
+% Input 
+%     reference: calcium-independent signal (usually 405-420 nm excitation)
+%     signal: calcium-dependent signal (usually 465-490 nm excitation 
+%              for green fluorescent proteins, or ~560 nm for red)
+%     smooth_win: window for moving average smooth 
+%     remove: the beginning of the traces with a steep slope one would like to remove
+%   Inputs for airPLS:
+%     lambda: lambda is an adjustable parameter, it can be adjusted by user. 
+%             The larger lambda is, the smoother baseline will be 
+%     itermax: maximum iteration times
+%     order: an integer indicating the order of the difference of penalties
+%     wep: weight exception proportion at both the start and end
+%     p: asymmetry parameter for the start and end
+%
+%  Output
+%     zdFF - z-score dF/F, numpy vector
+%    
+%  Examples:
+%     zdFF = get_zdFF(reference, signal);
+%     zdFF = get_zdFF(reference, signal, 10, 200, 10e9, 50, 2, 0.5, 0.5);
+%
+%  Reference:
+%     (1) Martianova, E., Aronson, S., Proulx, C.D. Multi-Fiber Photometry 
+%         to Record Neural Activity in Freely Moving Animal. J. Vis. Exp. 
+%         (152), e60278, doi:10.3791/60278 (2019)
+%         https://www.jove.com/video/60278/multi-fiber-photometry-to-record-neural-activity-freely-moving
+%
+%  katemartian @ CERVO Brain research center on March 5, 2020
+
 
   % Preset some parameters
     if nargin<9
