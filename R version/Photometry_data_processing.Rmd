@@ -1,0 +1,160 @@
+---
+title: "Photometry data processing"
+output: html_notebook
+---
+If you want to use this code, please cite our Jove paper:
+
+__Martianova, E., Aronson, S., Proulx, C.D.__ [Multi-Fiber Photometry to Record Neural Activity in Freely Moving Animal.](https://www.jove.com/video/60278/multi-fiber-photometry-to-record-neural-activity-freely-moving). _J. Vis. Exp._ (152), e60278, doi:10.3791/60278 (2019).
+
+This R notebook is a translation in R of the Python Jyputer notebook Photometry_data_processing.ipynb
+
+
+# Your data
+```{r}
+folder = 'C:/'                             # Change to your folder
+file = 'example.csv'                       # Change to your file or use our example.csv
+df <- read.csv(paste(folder,file,sep=''))  # Change if the file is not *.csv 
+head(df, n=5)
+```
+
+```{r}
+# Change depending on your data frame
+raw_reference <- df$MeanInt_410nm[2:nrow(df)]
+raw_signal <- df$MeanInt_470nm[2:nrow(df)]
+```
+
+
+Plot raw traces
+```{r}
+par(mfrow=c(2,1))
+plot(raw_reference, type='l', col='purple')
+plot(raw_signal, type='l', col='blue')
+```
+
+# Use function get_zdFF.R to calculate z-score dF/F
+```{r}
+zdFF = get_zdFF(raw_reference,raw_signal)
+```
+
+
+Plot z-dF/F
+```{r}
+plot(zdFF, type='l', col='black')
+```
+
+# Analysis step-by-step
+
+### Smooth traces
+
+
+Make sure to run movavg.R function.
+```{r}
+smooth_win = 10
+smooth_reference <- movavg(raw_reference, smooth_win)
+smooth_signal <- movavg(raw_signal, smooth_win)
+```
+You can use other algorithms to smooth your data.
+
+
+Plot smoothed traces
+```{r}
+par(mfrow=c(2,1))
+plot(smooth_reference, type='l', col='purple')
+plot(smooth_signal, type='l', col='blue')
+```
+
+### Find baseline slopes of the signals
+
+
+Make sure to run airPLS.R function
+```{r}
+lambda = 5e4
+itermax = 50
+differences = 1
+
+base_r <- airPLS(smooth_reference, lambda, differences, itermax)
+base_s <- airPLS(smooth_signal, lambda, differences, itermax)
+```
+
+
+Plot baseline slopes
+```{r}
+par(mfrow=c(2,1))
+plot(smooth_reference, type='l', col='purple')
+lines(base_r)
+plot(smooth_signal, type='l', col='blue')
+lines(base_s)
+```
+
+### Remove the baselines and the begining of the traces
+```{r}
+remove = 200
+n = length(raw_reference)
+reference <- smooth_reference[remove:n] - base_r[remove:n]
+signal <- smooth_signal[remove:n] - base_s[remove:n]
+```
+
+
+Plot traces
+```{r}
+par(mfrow=c(2,1))
+plot(reference, type='l', col='purple')
+plot(signal, type='l', col='blue')
+```
+
+
+### Standardize traces
+```{r}
+z_reference <- (reference - median(reference)) / sd(reference)
+z_signal <- (signal - median(signal)) / sd(signal)
+```
+
+
+Plot traces
+```{r}
+par(mfrow=c(2,1))
+plot(z_reference, type='l', col='purple')
+plot(z_signal, type='l', col='blue')
+```
+
+### Fit reference trace to signal
+
+```{r}
+# Robust linear regression
+require(MASS)
+fit <- rlm(z_signal ~ z_reference)
+```
+
+
+Plot the fit
+```{r}
+par(mfrow=c(1,1))
+plot(z_reference, z_signal)
+abline(fit, col="red")
+```
+
+### Align reference trace to signal
+```{r}
+z_reference_fit <- predict(fit)
+```
+
+
+Plot aligned traces
+```{r}
+plot(z_signal, type='l', col='blue')
+lines(z_reference_fit, type='l', col='purple')
+```
+
+### Calculate z-score zdF/F
+```{r}
+zdFF <- z_signal - z_reference_fit
+```
+
+
+Plot z-dF/F
+```{r}
+plot(zdFF, type='l', col='black')
+```
+
+# Contact us
+If you have any questions, please contact us: ekaterina.martianova.1@ulaval.ca
