@@ -21,7 +21,7 @@ function zdFF = get_zdFF(reference, signal, smooth_win, remove, lambda, itermax,
 %     p: asymmetry parameter for the start and end
 %
 %  Output
-%     zdFF - z-score dF/F, numpy vector
+%     zdFF - z-score dF/F, vector
 %    
 %  Examples:
 %     zdFF = get_zdFF(reference, signal);
@@ -33,7 +33,7 @@ function zdFF = get_zdFF(reference, signal, smooth_win, remove, lambda, itermax,
 %         (152), e60278, doi:10.3791/60278 (2019)
 %         https://www.jove.com/video/60278/multi-fiber-photometry-to-record-neural-activity-freely-moving
 %
-%  katemartian @ CERVO Brain research center on March 5, 2020
+%  March 2020 Ekaterina Martianova ekaterina.martianova.1@ulaval.ca
 
 
   % Preset some parameters
