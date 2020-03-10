@@ -17,6 +17,8 @@ def smooth_signal(x,window_len=10,window='flat'):
     output:
         the smoothed signal        
     """
+    
+    import numpy as np
 
     if x.ndim != 1:
         raise(ValueError, "smooth only accepts 1 dimension arrays.")
