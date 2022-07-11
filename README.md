@@ -7,3 +7,7 @@ In order to use, please copy the notebook ___Photometry_data_processing.ipynb___
 If you want to use this code, please cite our Jove paper: __Martianova, E., Aronson, S., Proulx, C.D.__ [Multi-Fiber Photometry to Record Neural Activity in Freely Moving Animal.](https://www.jove.com/video/60278/multi-fiber-photometry-to-record-neural-activity-freely-moving). _J. Vis. Exp._ (152), e60278, doi: 10.3791/60278 (2019).
 
 If you have any questions, please contact us: ekaterina.martianova.1@ulaval.ca
+
+
+# License
+This project is licensed under GNU GPLv3.
