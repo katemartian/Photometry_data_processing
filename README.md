@@ -1,4 +1,4 @@
-# Photometry_data_processing
+# Photometry data processing
 
 This processing algorithm of fiber photometry recordings was developed by Ekaterina Martianova in Christophe Proulx lab at CERVO Brain research center, Laval university, Quebec, QC, Canada, 2019.
 
@@ -6,9 +6,9 @@ In order to use, please copy the notebook ___Photometry_data_processing.ipynb___
 
 If you want to use this code, please cite our Jove paper: __Martianova, E., Aronson, S., Proulx, C.D.__ [Multi-Fiber Photometry to Record Neural Activity in Freely Moving Animal.](https://www.jove.com/video/60278/multi-fiber-photometry-to-record-neural-activity-freely-moving). _J. Vis. Exp._ (152), e60278, doi: 10.3791/60278 (2019).
 
-If you have any questions, please contact at: neudatsci@gmail.com
+If you have any questions, please contact at neudatsci@gmail.com
 
-<span style="color:red">NEW!</span> The pipeline is part of [danse](https://neuro.doriclenses.com/products/danse) now. You might be interested to watch this [video](https://doriclenses.com/downloads/video/How_to_process_FP_data_V1.4.mp4) explaining it.
+<span style="color:red"> *NEW!*</span> The pipeline is part of [danse](https://neuro.doriclenses.com/products/danse) software now. You might be interested to watch this [video](https://doriclenses.com/downloads/video/How_to_process_FP_data_V1.4.mp4) explaining the processing.
 
 
 # License
