@@ -10,7 +10,8 @@ If you would like to use this code, please cite our Jove paper: __Martianova, E.
 
 If you have any questions, please contact at neudatsci@gmail.com
 
-__NEW!__ The pipeline is part of [danse](https://neuro.doriclenses.com/products/danse) software now. You might be interested to watch this [video](https://doriclenses.com/downloads/video/How_to_process_FP_data_V1.4.mp4) explaining the processing.
+
+__NEW!__ The pipeline is part of [danse](https://neuro.doriclenses.com/products/danse) software now. You might be interested to watch this [video](https://doriclenses.com/downloads/video/How_to_process_FP_data_V1.4.mp4) explaining the processing. If you prefer, please don't hesitate to contact to my work email: kate.martianova@doriclenses.com
 
 
 # License
